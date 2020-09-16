@@ -1,0 +1,2 @@
+rootProject.name='RiverIslandApp'
+include ':app'
