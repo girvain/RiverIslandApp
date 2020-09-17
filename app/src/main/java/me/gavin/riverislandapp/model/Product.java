@@ -1,5 +1,9 @@
 package me.gavin.riverislandapp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,36 +11,36 @@ import java.util.List;
  * https://json2csharp.com/json-to-pojo
  */
 
-public class Product {
-    public String name;
-    public String cost;
-    public String wascost;
-    public String costEUR;
-    public String wascostEUR;
-    public String costWER;
-    public String wascostWER;
-    public String costUSD;
-    public String wascostUSD;
-    public String costAUD;
-    public String wascostAUD;
-    public String costSEK;
-    public String wascostSEK;
-    public String costWEK;
-    public String wascostWEK;
-    public String prodid;
-    public String promotionImage;
-    public String mediaIcon;
-    public String colour;
-    public String sizes;
-    public String altImage;
-    public int dateSort;
-    public List<String> allImages;
-    public List<Swatch> swatches;
-    public boolean isNewArrival;
-    public boolean isTrending;
-    public String category;
-    public String fit;
-    public String design;
+public class Product implements Serializable {
+    private String name;
+    private String cost;
+    private String wascost;
+    private String costEUR;
+    private String wascostEUR;
+    private String costWER;
+    private String wascostWER;
+    private String costUSD;
+    private String wascostUSD;
+    private String costAUD;
+    private String wascostAUD;
+    private String costSEK;
+    private String wascostSEK;
+    private String costWEK;
+    private String wascostWEK;
+    private String prodid;
+    private String promotionImage;
+    private String mediaIcon;
+    private String colour;
+    private String sizes;
+    private String altImage;
+    private int dateSort;
+    private List<String> allImages;
+    private List<Swatch> swatches;
+    private boolean isNewArrival;
+    private boolean isTrending;
+    private String category;
+    private String fit;
+    private String design;
 
     public String getName() {
         return name;
@@ -269,6 +273,8 @@ public class Product {
     public void setDesign(String design) {
         this.design = design;
     }
+
+
 }
 
 

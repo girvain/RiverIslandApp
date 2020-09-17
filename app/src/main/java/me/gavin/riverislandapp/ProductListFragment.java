@@ -80,6 +80,7 @@ public class ProductListFragment extends Fragment {
         mProductRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         setupAdapter();
+
         return v;
     }
 
@@ -100,17 +101,7 @@ public class ProductListFragment extends Fragment {
             mProductCost = itemView.findViewById(R.id.product_cost_textview);
             mProdImgMain = itemView.findViewById(R.id.product_img_main);
 
-            //TODO : this might not go here
-            mProdImgMain.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    NavDirections action =
-                            ProductListFragmentDirections
-                                    .actionProductListFragmentToSingleProductFragment();
 
-                    Navigation.findNavController(v).navigate(action);
-                }
-            });
         }
 
 
@@ -130,8 +121,8 @@ public class ProductListFragment extends Fragment {
             return new ProductHolder(view);
         }
         @Override
-        public void onBindViewHolder(ProductHolder productHolder, int position) {
-            Product product = mProducts.get(position);
+        public void onBindViewHolder(ProductHolder productHolder, final int position) {
+            final Product product = mProducts.get(position);
             productHolder.mProductName.setText(product.getName());
             productHolder.mProductCost.setText("£ " + product.getCost());
 
@@ -140,6 +131,20 @@ public class ProductListFragment extends Fragment {
                     //.centerCrop()
                     .into(productHolder.mProdImgMain);
 
+            //TODO : this might not go here
+            productHolder.mProdImgMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    NavDirections action = ProductListFragmentDirections.actionProductListFragmentToSingleProductFragment(product);
+                    Navigation.findNavController(v).navigate(action);
+
+//                    NavDirections action =
+//                            ProductListFragmentDirections
+//                                    .actionProductListFragmentToSingleProductFragment();
+//
+//                    Navigation.findNavController(v).navigate(action);
+                }
+            });
         }
         @Override
         public int getItemCount() {

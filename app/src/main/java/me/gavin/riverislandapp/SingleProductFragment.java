@@ -2,11 +2,16 @@ package me.gavin.riverislandapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import me.gavin.riverislandapp.model.Product;
 
 
 /**
@@ -15,6 +20,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class SingleProductFragment extends Fragment {
+
+    public static final String TAG = "SingleProductFragment";
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -49,6 +57,7 @@ public class SingleProductFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -60,5 +69,11 @@ public class SingleProductFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_single_product, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Product product = SingleProductFragmentArgs.fromBundle(getArguments()).getProduct();
+        Log.i(TAG, product.getName());
     }
 }
