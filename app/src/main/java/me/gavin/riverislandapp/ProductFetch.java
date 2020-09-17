@@ -3,6 +3,9 @@ package me.gavin.riverislandapp;
 import android.net.Uri;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,9 +13,11 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import me.gavin.riverislandapp.model.Product;
@@ -47,59 +52,66 @@ public class ProductFetch {
         return new String(getUrlBytes(urlSpec));
     }
 
+    // ------------- Methods for parsing data using GSON library ------------------- >
+
     public List<Product> fetchItems() {
         List<Product> items = new ArrayList<>();
         try {
-            String url = Uri.parse("https://static-ri.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json")
-                    .buildUpon()
-//                    .appendQueryParameter("method", "flickr.photos.getRecent")
-//                    .appendQueryParameter("api_key", API_KEY)
-//                    .appendQueryParameter("format", "json")
-//                    .appendQueryParameter("nojsoncallback", "1")
-//                    .appendQueryParameter("extras", "url_s")
-                    .build().toString();
+            String url = "https://static-ri.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json";
             String jsonString = getUrlString(url);
             Log.i(TAG, "Received JSON: " + jsonString);
-            JSONObject jsonBody = new JSONObject(jsonString);
-            parseItems(items, jsonBody);
+            //JSONObject jsonBody = new JSONObject(jsonString);
+            items = parseItems(jsonString);
         } catch (IOException ioe) {
             Log.e(TAG, "Failed to fetch items", ioe);
-        } catch (JSONException je) {
-            Log.e(TAG, "Failed to parse JSON", je);
         }
         return items;
     }
 
-    public List<Product> parseItems(List<Product> products, JSONObject jsonBody)
-    throws IOException, JSONException {
-        JSONArray jsonProdArray = jsonBody.getJSONArray("Products");
-        for (int i = 0; i < jsonProdArray.length(); i++) {
-            JSONObject jsonObject = jsonProdArray.getJSONObject(i);
-            Product product = new Product();
-            // map the json data to a product object
-            product.prodid = jsonObject.getString("prodid");
 
-            // add item to list
-            products.add(product);
-        }
+    public List<Product> parseItems(String jsonObject) {
+        Gson g = new GsonBuilder()
+                .registerTypeAdapter(Product[].class, new Deserializer<Product[]>())
+                .create();
+
+        List<Product> products = Arrays.asList(g.fromJson(jsonObject, Product[].class));
         return products;
     }
 
-//    private void parseItems(List<Product> items, JSONObject jsonBody)
-//            throws IOException, JSONException {
-//        JSONObject photosJsonObject = jsonBody.getJSONObject("photos");
-//        JSONArray photoJsonArray = photosJsonObject.getJSONArray("photo");
-//        for (int i = 0; i < photoJsonArray.length(); i++) {
-//            JSONObject photoJsonObject = photoJsonArray.getJSONObject(i);
-//            Product item = new Product();
-//            item.setId(photoJsonObject.getString("id"));
-//            item.setCaption(photoJsonObject.getString("title"));
-//            if (!photoJsonObject.has("url_s")) {
-//                continue;
-//            }
-//            item.setUrl(photoJsonObject.getString("url_s"));
-//            items.add(item);
+
+    // ------------- Methods for parsing data using simple JSON library ------------------- >
+
+//    public List<Product> fetchItems() {
+//        List<Product> items = new ArrayList<>();
+//        try {
+//            String url = Uri.parse("https://static-ri.ristack-3.nn4maws.net/v1/plp/en_gb/2506/products.json")
+//                    .buildUpon()
+//                    .build().toString();
+//            String jsonString = getUrlString(url);
+//            Log.i(TAG, "Received JSON: " + jsonString);
+//            JSONObject jsonBody = new JSONObject(jsonString);
+//            parseItems(items, jsonBody);
+//        } catch (IOException ioe) {
+//            Log.e(TAG, "Failed to fetch items", ioe);
+//        } catch (JSONException je) {
+//            Log.e(TAG, "Failed to parse JSON", je);
 //        }
+//        return items;
+//    }
+//
+//    public List<Product> parseItems(List<Product> products, JSONObject jsonBody)
+//    throws IOException, JSONException {
+//        JSONArray jsonProdArray = jsonBody.getJSONArray("Products");
+//        for (int i = 0; i < jsonProdArray.length(); i++) {
+//            JSONObject jsonObject = jsonProdArray.getJSONObject(i);
+//            Product product = new Product();
+//            // map the json data to a product object
+//            product.prodid = jsonObject.getString("prodid");
+//
+//            // add item to list
+//            products.add(product);
+//        }
+//        return products;
 //    }
 
 }
