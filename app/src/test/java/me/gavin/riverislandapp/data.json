@@ -1,0 +1,87 @@
+{
+  "Products": [
+    {
+      "name": "Light purple knit cardigan and bralet set",
+      "cost": "45",
+      "wascost": "",
+      "costEUR": "60",
+      "wascostEUR": "",
+      "costWER": "60",
+      "wascostWER": "",
+      "costUSD": "90",
+      "wascostUSD": "",
+      "costAUD": "90",
+      "wascostAUD": "",
+      "costSEK": "649",
+      "wascostSEK": "",
+      "costWEK": "649",
+      "wascostWEK": "",
+      "prodid": "790469",
+      "promotionImage": "c20140613-back-in-stock-icon-resp",
+      "mediaIcon": "c20140613-back-in-stock-icon-resp",
+      "colour": "Purple",
+      "sizes": "XS,S",
+      "altImage": "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/light-purple-knit-cardigan-and-bralet-set_790469_rollover",
+      "dateSort": 484,
+      "allImages": [
+        "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/light-purple-knit-cardigan-and-bralet-set_790469_main",
+        "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/light-purple-knit-cardigan-and-bralet-set_790469_rollover",
+        "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/light-purple-knit-cardigan-and-bralet-set_790469_back",
+        "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/light-purple-knit-cardigan-and-bralet-set_790469_alt1",
+        "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/light-purple-knit-cardigan-and-bralet-set_790469_alt2"
+      ],
+      "swatches": [
+        {
+          "productId": "790469",
+          "image": "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/light-purple-knit-cardigan-and-bralet-set_790469_swatch"
+        },
+        {
+          "productId": "790470",
+          "image": "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/790470_swatch"
+        }
+      ],
+      "isNewArrival": true,
+      "isTrending": true,
+      "category": "Tops,Knitwear",
+      "fit": "Main Collection",
+      "design": "Plain"
+    },
+    {
+      "name": "Beige slim fit longline coat",
+      "cost": "90",
+      "wascost": "",
+      "costEUR": "120",
+      "wascostEUR": "",
+      "costWER": "120",
+      "wascostWER": "",
+      "costUSD": "180",
+      "wascostUSD": "",
+      "costAUD": "180",
+      "wascostAUD": "",
+      "costSEK": "1249",
+      "wascostSEK": "",
+      "costWEK": "1249",
+      "wascostWEK": "",
+      "prodid": "792747",
+      "promotionImage": "",
+      "mediaIcon": "",
+      "colour": "Beige",
+      "sizes": "6,8,10,12,14,16,18",
+      "altImage": "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/beige-slim-fit-longline-coat_792747_rollover",
+      "dateSort": 0,
+      "allImages": [
+        "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/beige-slim-fit-longline-coat_792747_main",
+        "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/beige-slim-fit-longline-coat_792747_rollover",
+        "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/beige-slim-fit-longline-coat_792747_back",
+        "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/beige-slim-fit-longline-coat_792747_alt1",
+        "https:\/\/images.riverisland.com\/is\/image\/RiverIsland\/beige-slim-fit-longline-coat_792747_alt2"
+      ],
+      "swatches": [],
+      "isNewArrival": true,
+      "isTrending": true,
+      "category": "Coats & Jackets",
+      "fit": "Main Collection",
+      "design": "Plain"
+    }
+  ]
+}
