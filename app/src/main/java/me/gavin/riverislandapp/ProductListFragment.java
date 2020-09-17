@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -97,7 +99,21 @@ public class ProductListFragment extends Fragment {
             mProductName = itemView.findViewById(R.id.product_name_textview);
             mProductCost = itemView.findViewById(R.id.product_cost_textview);
             mProdImgMain = itemView.findViewById(R.id.product_img_main);
+
+            //TODO : this might not go here
+            mProdImgMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    NavDirections action =
+                            ProductListFragmentDirections
+                                    .actionProductListFragmentToSingleProductFragment();
+
+                    Navigation.findNavController(v).navigate(action);
+                }
+            });
         }
+
+
     }
 
     private class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
@@ -110,6 +126,7 @@ public class ProductListFragment extends Fragment {
         public ProductHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(getActivity());
             View view = inflater.inflate(R.layout.list_product_item, viewGroup, false);
+
             return new ProductHolder(view);
         }
         @Override
@@ -117,13 +134,12 @@ public class ProductListFragment extends Fragment {
             Product product = mProducts.get(position);
             productHolder.mProductName.setText(product.getName());
             productHolder.mProductCost.setText("£ " + product.getCost());
-            //Drawable placeholder = getResources().getDrawable(R.drawable.pic);
-            //photoHolder.bindDrawable(placeholder);
 
             Glide.with(getContext())
                     .load(product.getAllImages().get(0))
                     //.centerCrop()
                     .into(productHolder.mProdImgMain);
+
         }
         @Override
         public int getItemCount() {

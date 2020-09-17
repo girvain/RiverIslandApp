@@ -3,20 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/homeFragment">
 
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/homeFragment"
         android:name="me.gavin.riverislandapp.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_all_products"
+        android:id="@+id/productListFragment"
         android:name="me.gavin.riverislandapp.ProductListFragment"
         android:label="fragment_product_list"
-        tools:layout="@layout/fragment_product_list" />
+        tools:layout="@layout/fragment_product_list" >
+
+        <action
+            android:id="@+id/action_productListFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleProductFragment"
+        android:name="me.gavin.riverislandapp.SingleProductFragment"
+        android:label="fragment_single_product"
+        tools:layout="@layout/fragment_single_product" />
 
 
 </navigation>
