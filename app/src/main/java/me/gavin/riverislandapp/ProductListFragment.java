@@ -137,12 +137,6 @@ public class ProductListFragment extends Fragment {
                 public void onClick(View v) {
                     NavDirections action = ProductListFragmentDirections.actionProductListFragmentToSingleProductFragment(product);
                     Navigation.findNavController(v).navigate(action);
-
-//                    NavDirections action =
-//                            ProductListFragmentDirections
-//                                    .actionProductListFragmentToSingleProductFragment();
-//
-//                    Navigation.findNavController(v).navigate(action);
                 }
             });
         }
