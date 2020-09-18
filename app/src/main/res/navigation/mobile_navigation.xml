@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="me.gavin.riverislandapp.HomeFragment"
-        android:label="fragment_home"
+        android:label="River Island"
         tools:layout="@layout/fragment_home" >
 
     </fragment>
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/productListFragment"
         android:name="me.gavin.riverislandapp.ProductListFragment"
-        android:label="fragment_product_list"
+        android:label="All Products"
         tools:layout="@layout/fragment_product_list" >
 
         <action
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/singleProductFragment"
         android:name="me.gavin.riverislandapp.SingleProductFragment"
-        android:label="fragment_single_product"
+        android:label=""
         tools:layout="@layout/fragment_single_product" >
         <argument
             android:name="product"

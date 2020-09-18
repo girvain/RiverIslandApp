@@ -91,17 +91,17 @@ public class ProductListFragment extends Fragment {
     }
 
     private class ProductHolder extends RecyclerView.ViewHolder {
+        private TextView mProductTrendOrNew;
         private TextView mProductName;
         private ImageView mProdImgMain;
         private TextView mProductCost;
 
         public ProductHolder(View itemView) {
             super(itemView);
+            mProductTrendOrNew = itemView.findViewById(R.id.prod_trend_or_new_textview);
             mProductName = itemView.findViewById(R.id.product_name_textview);
             mProductCost = itemView.findViewById(R.id.product_cost_textview);
             mProdImgMain = itemView.findViewById(R.id.product_img_main);
-
-
         }
 
 
@@ -123,8 +123,13 @@ public class ProductListFragment extends Fragment {
         @Override
         public void onBindViewHolder(ProductHolder productHolder, final int position) {
             final Product product = mProducts.get(position);
+            if (product.isTrending()) {
+                productHolder.mProductTrendOrNew.setText("TRENDING");
+            } else if (product.isNewArrival()) {
+                productHolder.mProductTrendOrNew.setText("NEW ARRIVAL");
+            }
             productHolder.mProductName.setText(product.getName());
-            productHolder.mProductCost.setText("£ " + product.getCost());
+            productHolder.mProductCost.setText("£" + product.getCost());
 
             Glide.with(getContext())
                     .load(product.getAllImages().get(0))

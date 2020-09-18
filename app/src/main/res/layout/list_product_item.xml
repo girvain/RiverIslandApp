@@ -19,16 +19,25 @@
             app:srcCompat="@android:drawable/editbox_background_normal" />
 
         <TextView
+            android:id="@+id/prod_trend_or_new_textview"
+            style="@style/trending"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <TextView
             android:id="@+id/product_name_textview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Prod ID" />
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp" />
 
         <TextView
             android:id="@+id/product_cost_textview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            style="@style/prodCost"
             android:gravity="center" />
     </LinearLayout>
 
