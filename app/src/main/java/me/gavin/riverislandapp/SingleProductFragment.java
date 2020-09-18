@@ -5,51 +5,51 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import me.gavin.riverislandapp.model.Product;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SingleProductFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SingleProductFragment extends Fragment {
 
     public static final String TAG = "SingleProductFragment";
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    /**
+     * The pager widget, which handles animation and allows swiping horizontally to access previous
+     * and next wizard steps.
+     */
+    private ViewPager mPager;
+
+    /**
+     * The pager adapter, which provides the pages to the view pager widget.
+     */
+    private PagerAdapter pagerAdapter;
+    private Product product; // sent from productListFragment
+
+    private TextView mTrendOrNewTextView;
+    private TextView mNameTextView;
+    private TextView mPriceTextView;
 
     public SingleProductFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SingleProductFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static SingleProductFragment newInstance(String param1, String param2) {
         SingleProductFragment fragment = new SingleProductFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,22 +58,66 @@ public class SingleProductFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_single_product, container, false);
+        View v =inflater.inflate(R.layout.fragment_single_product, container, false);
+
+
+        // Instantiate a ViewPager and a PagerAdapter.
+        mPager = (ViewPager) v.findViewById(R.id.pager);
+        pagerAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager());
+        mPager.setAdapter(pagerAdapter);
+
+
+        return v;
     }
 
+    // callback to recieve the product object
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Product product = SingleProductFragmentArgs.fromBundle(getArguments()).getProduct();
+        product = SingleProductFragmentArgs.fromBundle(getArguments()).getProduct();
         Log.i(TAG, product.getName());
+
+        // bind the rest the product data
+        mTrendOrNewTextView = view.findViewById(R.id.single_prod_trend_or_new_textview);
+        if (product.isTrending()) {
+            mTrendOrNewTextView.setText("TRENDING");
+        } else if (product.isNewArrival()) {
+            mTrendOrNewTextView.setText("NEW ARRIVAL");
+        }
+
+        mNameTextView = view.findViewById(R.id.single_prod_name_textview);
+        mNameTextView.setText(product.getName());
+
+        mPriceTextView = view.findViewById(R.id.single_prod_price_textview);
+        mPriceTextView.setText(product.getCost());
+
+    }
+
+
+    /**
+     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
+     * sequence.
+     */
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        public ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return ScreenSlidePageFragment.newInstance(product.getAllImages().get(position));
+        }
+
+        @Override
+        public int getCount() {
+            //return product != null ? (product.getAllImages().size()-1) : 1;
+            return 4; //TODO: fix this hardcoded number
+        }
     }
 }
