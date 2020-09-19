@@ -55,7 +55,7 @@ public class ProductFetch {
 
     // ------------- Methods for parsing data using GSON library ------------------- >
 
-    public List<Product> fetchAndFilterItems() {
+    public List<Product> fetchAndFilterByTrending() {
         return fetchItems().stream()
                 .filter(product -> product.isTrending() == true)
                 .collect(Collectors.toList());
@@ -63,8 +63,47 @@ public class ProductFetch {
 
     public List<Product> fetchAndFilterByCategory(String category) {
         return fetchItems().stream()
-                .filter(product -> product.getCategory().equals(category))
+                .filter(product -> isWordInList(product.getCategory(), category))
                 .collect(Collectors.toList());
+    }
+
+    public List<Product> filterByCategory(List<Product> products, String category) {
+        return products.stream()
+                .filter(product -> isWordInList(product.getCategory(), category))
+                .collect(Collectors.toList());
+    }
+
+    public List<Product> filterByColour(List<Product> products, String colour) {
+        return products.stream()
+                .filter(product -> isWordInList(product.getColour(), colour))
+                .collect(Collectors.toList());
+    }
+
+    public List<Product> filterBySize(List<Product> products, String size) {
+        return products.stream()
+                .filter(product -> isWordInList(product.getSizes(), size))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Method to check if a word is in a string of words seperated with a comma. It works
+     * by checking if the string contains a comma then spliting it into an array or words
+     * and checking if each of these words is equal to the seconds argument of the method.
+     * If there is no comma, the method performs a simple .equals check.
+     * @param words
+     * @param word
+     * @return
+     */
+    public boolean isWordInList(String words, String word) {
+        if (words.contains(",")) {
+            String[] wordList = words.split(",");
+            for (String w : wordList) {
+                if (w.equals(word)) return true;
+            }
+        } else {
+            if (words.equals(word)) return true;
+        }
+        return false;
     }
 
     public List<Product> fetchItems() {

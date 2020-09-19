@@ -1,20 +1,13 @@
 package me.gavin.riverislandapp;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import me.gavin.riverislandapp.model.Product;
@@ -209,21 +202,64 @@ public class ProductFetchTest {
     }
 
     @Test
-    public void fetchAndFilterItemsTest() {
-        List<Product> results = mProductFetch.fetchAndFilterItems();
+    public void fetchAndFilterByTrendingTest() {
+        List<Product> results = mProductFetch.fetchAndFilterByTrending();
         assertNotNull(results);
         assertEquals(true, results.get(0).isTrending());
         assertEquals(true, results.get(1).isTrending());
         assertEquals(true, results.get(2).isTrending());
-        assertTrue(results.size() < 516); // this is the size of the pre filtered data
+//        assertTrue(results.size() < 516); // this is the size of the pre filtered data
+    }
+
+    // used debugger to further inspect the result data
+    @Test
+    public void filterByColourTest() {
+        List<Product> products = mProductFetch.fetchItems(); // Get the full product list over net
+        List<Product> result = mProductFetch.filterByColour(products, "Black");
+        assertEquals("Black", result.get(0).getColour());
+        assertEquals("Black", result.get(10).getColour());
+        assertNotEquals("Brown", result.get(0).getColour());
     }
 
     @Test
     public void fetchAndFilterByCategoryTest() {
         List<Product> results = mProductFetch.fetchAndFilterByCategory("Tops");
         assertNotNull(results);
-        assertTrue(results.get(0).getCategory().equals("Tops"));
+        assertTrue(results.get(0).getCategory().equals("Tops,Knitwear")); // was checked in the data
         assertTrue(results.get(4).getCategory().equals("Tops"));
         assertTrue(results.get(results.size()-1).getCategory().equals("Tops"));
+    }
+
+    @Test
+    public void filterByCategoryTest() {
+        List<Product> products = mProductFetch.fetchItems(); // Get the full product list over net
+        List<Product> result = mProductFetch.filterByCategory(products, "Tops");
+        assertTrue(result.get(0).getCategory().equals("Tops,Knitwear")); // was checked in the data
+        assertTrue(result.get(4).getCategory().equals("Tops"));
+        assertTrue(result.get(result.size()-1).getCategory().equals("Tops"));
+    }
+
+    @Test
+    public void filterBySizeTest() {
+        List<Product> products = mProductFetch.fetchItems(); // Get the full product list over net
+        List<Product> result = mProductFetch.filterBySize(products, "6");
+        assertTrue(result.get(0).getSizes().contains("6"));
+        assertTrue(result.get(1).getSizes().contains("6"));
+        assertTrue(result.get((result.size()-1)).getSizes().contains("6"));
+    }
+
+    @Test
+    public void isWordInListTest() {
+        String testData = "Tops,Knitwear";
+        boolean result = mProductFetch.isWordInList(testData, "Knitwear");
+        assertTrue(result);
+
+        boolean resultFalse = mProductFetch.isWordInList(testData, "Scarf");
+        assertFalse(resultFalse);
+    }
+
+    @Test
+    public void fetchAndFilterByCategoryTwoCategories() {
+
     }
 }
