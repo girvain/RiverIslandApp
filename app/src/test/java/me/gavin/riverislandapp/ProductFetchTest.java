@@ -249,6 +249,16 @@ public class ProductFetchTest {
     }
 
     @Test
+    public void filterByNameTest() {
+        List<Product> products = mProductFetch.fetchItems(); // Get the full product list over net
+        List<Product> result = mProductFetch.filterByName(products, "face covering");
+        assertTrue(result.get(0).getName().contains("face"));
+        // search for an exact product name
+        List<Product> result2 = mProductFetch.filterByName(products, "Pink paisley print wide leg denim jeans");
+        assertTrue(result2.size() == 1);
+    }
+
+    @Test
     public void multiFilteringTest() {
         List<Product> products = mProductFetch.fetchItems(); // Get the full product list over net
         List<Product> result = mProductFetch.filterBySize(products, "10");

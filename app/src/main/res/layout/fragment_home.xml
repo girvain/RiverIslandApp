@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/heading_new_arrivals_home_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/new_arrivals" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager_new_arrivals_home_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="493dp" >
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+
+        <TextView
+            android:id="@+id/heading_face_mask_home_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/face_mask" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager_face_mask_home_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="493dp" >
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <Button
+            android:id="@+id/face_mask_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+    </LinearLayout>
+</ScrollView>

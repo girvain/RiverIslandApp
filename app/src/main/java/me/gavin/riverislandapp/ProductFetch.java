@@ -85,6 +85,14 @@ public class ProductFetch {
                 .collect(Collectors.toList());
     }
 
+    //TODO: This is only a one word search for searching the data for a name field. This
+    // is not a search feature, it's only for searching for facemasks at the moment
+    public List<Product> filterByName(List<Product> products, String name) {
+        return products.stream()
+                .filter(product -> product.getName().contains(name))
+                .collect(Collectors.toList());
+    }
+
     /**
      * Method to check if a word is in a string of words seperated with a comma. It works
      * by checking if the string contains a comma then spliting it into an array or words
@@ -105,6 +113,7 @@ public class ProductFetch {
         }
         return false;
     }
+
 
     public List<Product> fetchItems() {
         List<Product> items = new ArrayList<>();
