@@ -249,6 +249,18 @@ public class ProductFetchTest {
     }
 
     @Test
+    public void multiFilteringTest() {
+        List<Product> products = mProductFetch.fetchItems(); // Get the full product list over net
+        List<Product> result = mProductFetch.filterBySize(products, "10");
+        List<Product> result2 = mProductFetch.filterByCategory(result, "Tops");
+        List<Product> result3 = mProductFetch.filterByColour(result2, "Black");
+
+        assertTrue(result3.get(0).getSizes().contains("6"));
+        assertTrue(result3.get(0).getColour().equals("Black"));
+        assertTrue(result3.get(0).getCategory().equals("Tops"));
+    }
+
+    @Test
     public void isWordInListTest() {
         String testData = "Tops,Knitwear";
         boolean result = mProductFetch.isWordInList(testData, "Knitwear");
