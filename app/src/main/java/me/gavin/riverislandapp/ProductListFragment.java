@@ -137,12 +137,9 @@ public class ProductListFragment extends Fragment {
                     .into(productHolder.mProdImgMain);
 
             //TODO : this might not go here
-            productHolder.mProdImgMain.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    NavDirections action = ProductListFragmentDirections.actionProductListFragmentToSingleProductFragment(product);
-                    Navigation.findNavController(v).navigate(action);
-                }
+            productHolder.mProdImgMain.setOnClickListener(v -> {
+                NavDirections action = ProductListFragmentDirections.actionProductListFragmentToSingleProductFragment(product);
+                Navigation.findNavController(v).navigate(action);
             });
         }
         @Override

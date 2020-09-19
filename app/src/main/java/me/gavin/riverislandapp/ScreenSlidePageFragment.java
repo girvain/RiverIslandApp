@@ -1,6 +1,7 @@
 package me.gavin.riverislandapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,8 @@ public class ScreenSlidePageFragment extends Fragment {
                 .load(url)
                 //.centerCrop()
                 .into(mImageView);
+
+        mImageView.setOnClickListener(v -> Log.i("Gavin RossW£", "onClickListener"));
 
         return rootView;
     }
