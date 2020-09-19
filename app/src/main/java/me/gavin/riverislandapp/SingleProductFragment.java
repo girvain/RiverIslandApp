@@ -67,12 +67,14 @@ public class SingleProductFragment extends Fragment {
         // Inflate the layout for this fragment
         View v =inflater.inflate(R.layout.fragment_single_product, container, false);
 
+        // moving the argument recieving to here from onViewCreated solved the null pointer error
+        // when trying to set the viewpager getCount() to size of url list.
+        product = SingleProductFragmentArgs.fromBundle(getArguments()).getProduct();
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) v.findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager());
         mPager.setAdapter(pagerAdapter);
-
 
         return v;
     }
@@ -80,8 +82,7 @@ public class SingleProductFragment extends Fragment {
     // callback to recieve the product object
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        product = SingleProductFragmentArgs.fromBundle(getArguments()).getProduct();
-        Log.i(TAG, product.getName());
+        //product = SingleProductFragmentArgs.fromBundle(getArguments()).getProduct();
 
         // bind the rest the product data
         mTrendOrNewTextView = view.findViewById(R.id.single_prod_trend_or_new_textview);
@@ -99,7 +100,6 @@ public class SingleProductFragment extends Fragment {
 
     }
 
-
     /**
      * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
      * sequence.
@@ -116,8 +116,7 @@ public class SingleProductFragment extends Fragment {
 
         @Override
         public int getCount() {
-            //return product != null ? (product.getAllImages().size()-1) : 1;
-            return 4; //TODO: fix this hardcoded number
+            return product.getAllImages().size();
         }
     }
 }

@@ -172,7 +172,7 @@ public class ProductFetchTest {
     @Test
     public void fetchItemsTest() {
         List<Product> results = mProductFetch.fetchItems();
-        assertEquals("790469", results.get(0).prodid);
+        assertEquals("790469", results.get(0).getProdid());
     }
 
     @Test
@@ -200,12 +200,30 @@ public class ProductFetchTest {
         Product p = g.fromJson(jsonStringObj, Product.class);
 
         assertEquals("790469", p.getProdid());
-        assertEquals(5, p.allImages.size());
+        assertEquals(5, p.getAllImages().size());
     }
 
     @Test
     public void gsonJsonObjectWithArrayTest() {
 
+    }
 
+    @Test
+    public void fetchAndFilterItemsTest() {
+        List<Product> results = mProductFetch.fetchAndFilterItems();
+        assertNotNull(results);
+        assertEquals(true, results.get(0).isTrending());
+        assertEquals(true, results.get(1).isTrending());
+        assertEquals(true, results.get(2).isTrending());
+        assertTrue(results.size() < 516); // this is the size of the pre filtered data
+    }
+
+    @Test
+    public void fetchAndFilterByCategoryTest() {
+        List<Product> results = mProductFetch.fetchAndFilterByCategory("Tops");
+        assertNotNull(results);
+        assertTrue(results.get(0).getCategory().equals("Tops"));
+        assertTrue(results.get(4).getCategory().equals("Tops"));
+        assertTrue(results.get(results.size()-1).getCategory().equals("Tops"));
     }
 }

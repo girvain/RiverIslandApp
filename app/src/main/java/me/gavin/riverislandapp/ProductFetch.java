@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import me.gavin.riverislandapp.model.Product;
 
@@ -53,6 +54,18 @@ public class ProductFetch {
     }
 
     // ------------- Methods for parsing data using GSON library ------------------- >
+
+    public List<Product> fetchAndFilterItems() {
+        return fetchItems().stream()
+                .filter(product -> product.isTrending() == true)
+                .collect(Collectors.toList());
+    }
+
+    public List<Product> fetchAndFilterByCategory(String category) {
+        return fetchItems().stream()
+                .filter(product -> product.getCategory().equals(category))
+                .collect(Collectors.toList());
+    }
 
     public List<Product> fetchItems() {
         List<Product> items = new ArrayList<>();
