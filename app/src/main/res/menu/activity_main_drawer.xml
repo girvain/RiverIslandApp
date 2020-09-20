@@ -10,8 +10,10 @@
         <item
             android:id="@+id/productListFragment"
             android:title="@string/all_products">
-
         </item>
+        <item
+            android:id="@+id/coatsAndJackFragment"
+            android:title="Coats \&amp; Jackets"/>
 
     </group>
 </menu>

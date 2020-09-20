@@ -36,6 +36,15 @@
             android:name="product"
             app:argType="me.gavin.riverislandapp.model.Product" />
     </fragment>
+    <fragment
+        android:id="@+id/coatsAndJackFragment"
+        android:name="me.gavin.riverislandapp.categoryFragments.CoatsAndJackFragment"
+        android:label="fragment_coats_and_jack"
+        tools:layout="@layout/fragment_coats_and_jack" >
+        <action
+            android:id="@+id/action_coatsAndJackFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
 
 
 </navigation>
