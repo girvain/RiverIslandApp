@@ -34,7 +34,15 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.homeFragment,
                 R.id.productListFragment,
-                R.id.coatsAndJackFragment
+                R.id.coatsAndJackFragment,
+                R.id.accessoriesFragment,
+                R.id.bagAndPurseFragment,
+                R.id.dressesFragment,
+                R.id.jeansFragment,
+                R.id.nightAndSlippFragment,
+                R.id.shoesAndBootsFragment,
+                R.id.topsFragment,
+                R.id.trousersFragment
                 )
                 .setDrawerLayout(drawer)
                 .build();

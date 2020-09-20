@@ -1,4 +1,4 @@
-package me.gavin.riverislandapp;
+package me.gavin.riverislandapp.categoryFragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +15,8 @@ import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
+import me.gavin.riverislandapp.HomeFragmentDirections;
+import me.gavin.riverislandapp.R;
 import me.gavin.riverislandapp.model.Product;
 
 public class ScreenSlidePageFragment extends Fragment {

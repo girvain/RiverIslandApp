@@ -15,11 +15,20 @@
         <action
             android:id="@+id/action_homeFragment_to_singleProductFragment"
             app:destination="@id/singleProductFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_jeansFragment"
+            app:destination="@id/jeansFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_accessoriesFragment"
+            app:destination="@id/accessoriesFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/productListFragment"
-        android:name="me.gavin.riverislandapp.ProductListFragment"
+        android:name="me.gavin.riverislandapp.categoryFragments.ProductListFragment"
         android:label="All Products"
         tools:layout="@layout/fragment_product_list" >
 
@@ -43,6 +52,71 @@
         tools:layout="@layout/fragment_coats_and_jack" >
         <action
             android:id="@+id/action_coatsAndJackFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoesAndBootsFragment"
+        android:name="me.gavin.riverislandapp.categoryFragments.ShoesAndBootsFragment"
+        android:label="Shoes \&amp; Boots"
+        >
+        <action
+            android:id="@+id/action_shoesAndBootsFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dressesFragment"
+        android:name="me.gavin.riverislandapp.categoryFragments.DressesFragment"
+        android:label="Dresses">
+        <action
+            android:id="@+id/action_dressesFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/topsFragment"
+        android:name="me.gavin.riverislandapp.categoryFragments.TopsFragment"
+        android:label="Tops">
+        <action
+            android:id="@+id/action_topsFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nightAndSlippFragment"
+        android:name="me.gavin.riverislandapp.categoryFragments.NightAndSlippFragment"
+        android:label="Nightwear &amp; Slippers">
+        <action
+            android:id="@+id/action_nightAndSlippFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trousersFragment"
+        android:name="me.gavin.riverislandapp.categoryFragments.TrousersFragment"
+        android:label="Trousers">
+        <action
+            android:id="@+id/action_trousersFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jeansFragment"
+        android:name="me.gavin.riverislandapp.categoryFragments.JeansFragment"
+        android:label="Jeans">
+        <action
+            android:id="@+id/action_jeansFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bagAndPurseFragment"
+        android:name="me.gavin.riverislandapp.categoryFragments.BagAndPurseFragment"
+        android:label="Bags &amp; Purses">
+        <action
+            android:id="@+id/action_bagAndPurseFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accessoriesFragment"
+        android:name="me.gavin.riverislandapp.categoryFragments.AccessoriesFragment"
+        android:label="Accessories">
+        <action
+            android:id="@+id/action_accessoriesFragment_to_singleProductFragment"
             app:destination="@id/singleProductFragment" />
     </fragment>
 

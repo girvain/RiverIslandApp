@@ -10,15 +10,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import me.gavin.riverislandapp.categoryFragments.ScreenSlidePageFragment;
 import me.gavin.riverislandapp.model.Product;
 
 

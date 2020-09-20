@@ -14,6 +14,30 @@
         <item
             android:id="@+id/coatsAndJackFragment"
             android:title="Coats \&amp; Jackets"/>
+        <item
+            android:id="@+id/shoesAndBootsFragment"
+            android:title="Shoes \&amp; Boots"/>
+        <item
+            android:id="@+id/dressesFragment"
+            android:title="Dresses"/>
+        <item
+            android:id="@+id/topsFragment"
+            android:title="Tops"/>
+        <item
+            android:id="@+id/nightAndSlippFragment"
+            android:title="Nightwear &amp; Slippers"/>
+        <item
+            android:id="@+id/trousersFragment"
+            android:title="Trousers"/>
+        <item
+            android:id="@+id/jeansFragment"
+            android:title="Jeans"/>
+        <item
+            android:id="@+id/bagAndPurseFragment"
+            android:title="Bags &amp; Purses"/>
+        <item
+            android:id="@+id/accessoriesFragment"
+            android:title="Accessories"/>
 
     </group>
 </menu>

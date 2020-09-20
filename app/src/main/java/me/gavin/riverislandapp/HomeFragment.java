@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -15,12 +17,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
-
-import com.google.android.material.tabs.TabLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import me.gavin.riverislandapp.categoryFragments.ProductListFragmentDirections;
+import me.gavin.riverislandapp.categoryFragments.ScreenSlidePageFragment;
 import me.gavin.riverislandapp.model.Product;
 
 
@@ -31,6 +34,9 @@ public class HomeFragment extends Fragment {
     private ViewPager mPagerNewArivals;
     private ViewPager mPagerFaceMasks;
     private ViewPager mPagerJeans;
+    private TextView mViewAllNewTextView;
+    private TextView mViewAllFaceTextView;
+    private TextView mViewAllJeansTextView;
 
     private PagerAdapter mPagerNewArrAdapter;
     private PagerAdapter mPagerFaceMskAdapter;
@@ -72,6 +78,22 @@ public class HomeFragment extends Fragment {
         mPagerNewArivals = (ViewPager) v.findViewById(R.id.pager_new_arrivals_home_fragment);
         mPagerFaceMasks = (ViewPager) v.findViewById(R.id.pager_face_mask_home_fragment);
         mPagerJeans = (ViewPager) v.findViewById(R.id.pager_jeans_home_fragment);
+
+        mViewAllNewTextView = v.findViewById(R.id.sub_head_home_1);
+        mViewAllNewTextView.setOnClickListener(v1 -> {
+            NavDirections action = HomeFragmentDirections.actionHomeFragmentToProductListFragment();
+            Navigation.findNavController(v1).navigate(action);
+        });
+        mViewAllFaceTextView = v.findViewById(R.id.sub_head_home_2);
+        mViewAllFaceTextView.setOnClickListener(v1 -> {
+            NavDirections action = HomeFragmentDirections.actionHomeFragmentToAccessoriesFragment();
+            Navigation.findNavController(v1).navigate(action);
+        });
+        mViewAllJeansTextView = v.findViewById(R.id.sub_head_home_3);
+        mViewAllJeansTextView.setOnClickListener(v1 -> {
+            NavDirections action = HomeFragmentDirections.actionHomeFragmentToJeansFragment();
+            Navigation.findNavController(v1).navigate(action);
+        });
 
         // restore the previous page position
         if (savedInstanceState != null) {

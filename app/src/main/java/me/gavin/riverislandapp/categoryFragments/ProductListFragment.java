@@ -1,4 +1,4 @@
-package me.gavin.riverislandapp;
+package me.gavin.riverislandapp.categoryFragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +21,9 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import me.gavin.riverislandapp.AbstractProductListFragment;
+import me.gavin.riverislandapp.ProductFetch;
 
 import me.gavin.riverislandapp.model.Product;
 
