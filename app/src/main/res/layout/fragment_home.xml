@@ -27,14 +27,13 @@
             android:layout_height="wrap_content"
             android:text="View All" />
 
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager_new_arrivals_home_fragment"
-            android:layout_width="match_parent"
             style="@style/viewpager_home"
+            android:layout_width="match_parent"
             android:layout_height="493dp">
-
         </androidx.viewpager.widget.ViewPager>
-
 
         <TextView
             android:id="@+id/heading_face_mask_home_fragment"

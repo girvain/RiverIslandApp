@@ -110,7 +110,7 @@ public class HomeFragment extends Fragment {
             Log.i("fsd", "ffsadf");
 
             // configure the adapters after data has arrived from get request
-            mPagerNewArrAdapter = new ScreenSlidePagerAdapter(getParentFragmentManager(), maskProducts);
+            mPagerNewArrAdapter = new ScreenSlidePagerAdapter(getParentFragmentManager(), newProducts);
             mPagerNewArivals.setAdapter(mPagerNewArrAdapter);
 
             mPagerFaceMskAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), maskProducts);
