@@ -30,11 +30,8 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager_new_arrivals_home_fragment"
             android:layout_width="match_parent"
-            android:layout_height="388dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp">
+            style="@style/viewpager_home"
+            android:layout_height="493dp">
 
         </androidx.viewpager.widget.ViewPager>
 
@@ -55,6 +52,28 @@
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager_face_mask_home_fragment"
+            android:layout_width="match_parent"
+            style="@style/viewpager_home"
+            android:layout_height="493dp" >
+        </androidx.viewpager.widget.ViewPager>
+
+
+        <TextView
+            android:id="@+id/heading_jeans_home_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/heading"
+            android:text="@string/face_mask" />
+
+        <TextView
+            android:id="@+id/jeans_subheading_home"
+            style="@style/sub_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View All" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager_jeans_home_fragment"
             android:layout_width="match_parent"
             style="@style/viewpager_home"
             android:layout_height="493dp" >

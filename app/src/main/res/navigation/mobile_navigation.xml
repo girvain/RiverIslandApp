@@ -12,6 +12,9 @@
         android:label="River Island"
         tools:layout="@layout/fragment_home" >
 
+        <action
+            android:id="@+id/action_homeFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
     </fragment>
 
     <fragment

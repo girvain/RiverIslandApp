@@ -27,13 +27,16 @@ public class HomeFragment extends Fragment {
 
     private ViewPager mPagerNewArivals;
     private ViewPager mPagerFaceMasks;
+    private ViewPager mPagerJeans;
 
     private PagerAdapter mPagerNewArrAdapter;
     private PagerAdapter mPagerFaceMskAdapter;
+    private PagerAdapter mPagerJeansAdapter;
 
     private List<Product> products;
     private List<Product> newProducts;
     private List<Product> maskProducts;
+    private List<Product> jeans;
 
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
@@ -49,9 +52,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // get the full list of products
         new ProductFetchTask().execute();
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,9 +67,30 @@ public class HomeFragment extends Fragment {
 
         mPagerNewArivals = (ViewPager) v.findViewById(R.id.pager_new_arrivals_home_fragment);
         mPagerFaceMasks = (ViewPager) v.findViewById(R.id.pager_face_mask_home_fragment);
+        mPagerJeans = (ViewPager) v.findViewById(R.id.pager_jeans_home_fragment);
 
         return v;
     }
+
+    /**
+     * The adapters need recreated and set on the viewpagers for screen rotation and back button
+     * presses
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (maskProducts != null) {
+            mPagerNewArrAdapter = new ScreenSlidePagerAdapter(getParentFragmentManager(), newProducts);
+            mPagerNewArivals.setAdapter(mPagerNewArrAdapter);
+
+            mPagerFaceMskAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), maskProducts);
+            mPagerFaceMasks.setAdapter(mPagerFaceMskAdapter);
+
+            mPagerJeansAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), jeans);
+            mPagerJeans.setAdapter(mPagerJeansAdapter);
+        }
+    }
+
 
     private class ProductFetchTask extends AsyncTask<Void, Void, List<Product>> {
         ProductFetch mProductFetch;
@@ -77,16 +104,20 @@ public class HomeFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Product> items) {
             products = items;
-            newProducts = items.subList(0, 8);
+            newProducts = products.subList(0, 8);
             maskProducts = mProductFetch.filterByName(items,"face covering");
+            jeans = mProductFetch.filterByName(items, "jeans");
             Log.i("fsd", "ffsadf");
 
             // configure the adapters after data has arrived from get request
-            mPagerNewArrAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), newProducts);
+            mPagerNewArrAdapter = new ScreenSlidePagerAdapter(getParentFragmentManager(), maskProducts);
             mPagerNewArivals.setAdapter(mPagerNewArrAdapter);
 
             mPagerFaceMskAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), maskProducts);
             mPagerFaceMasks.setAdapter(mPagerFaceMskAdapter);
+
+            mPagerJeansAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), jeans);
+            mPagerJeans.setAdapter(mPagerJeansAdapter);
         }
     }
 
@@ -108,12 +139,13 @@ public class HomeFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            return ScreenSlidePageFragment.newInstance(urls.get(position));
+            //return ScreenSlidePageFragment.newInstance(urls.get(position));
+            return ScreenSlidePageFragment.newInstance(mProductList.get(position));
         }
 
         @Override
         public int getCount() {
-            return urls.size();
+            return mProductList.size();
         }
     }
 
