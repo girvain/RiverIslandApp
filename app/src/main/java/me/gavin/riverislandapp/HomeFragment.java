@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -24,7 +25,9 @@ import me.gavin.riverislandapp.model.Product;
 
 
 public class HomeFragment extends Fragment {
+    public static final String SCROLL_POS = "scroll_pos";
 
+    private ScrollView mScrollView; // the root view, id needed to get scroll position
     private ViewPager mPagerNewArivals;
     private ViewPager mPagerFaceMasks;
     private ViewPager mPagerJeans;
@@ -64,13 +67,27 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+        mScrollView = v.findViewById(R.id.home_scrollview);
 
         mPagerNewArivals = (ViewPager) v.findViewById(R.id.pager_new_arrivals_home_fragment);
         mPagerFaceMasks = (ViewPager) v.findViewById(R.id.pager_face_mask_home_fragment);
         mPagerJeans = (ViewPager) v.findViewById(R.id.pager_jeans_home_fragment);
 
+        // restore the previous page position
+        if (savedInstanceState != null) {
+            int scrollPos = savedInstanceState.getInt(SCROLL_POS);
+            mScrollView.setVerticalScrollbarPosition(scrollPos);
+        }
+
         return v;
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(SCROLL_POS, mScrollView.getVerticalScrollbarPosition());
+    }
+
 
     /**
      * The adapters need recreated and set on the viewpagers for screen rotation and back button
@@ -80,7 +97,7 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (maskProducts != null) {
-            mPagerNewArrAdapter = new ScreenSlidePagerAdapter(getParentFragmentManager(), newProducts);
+            mPagerNewArrAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), newProducts);
             mPagerNewArivals.setAdapter(mPagerNewArrAdapter);
 
             mPagerFaceMskAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), maskProducts);
@@ -88,7 +105,9 @@ public class HomeFragment extends Fragment {
 
             mPagerJeansAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), jeans);
             mPagerJeans.setAdapter(mPagerJeansAdapter);
+
         }
+
     }
 
 
@@ -110,7 +129,7 @@ public class HomeFragment extends Fragment {
             Log.i("fsd", "ffsadf");
 
             // configure the adapters after data has arrived from get request
-            mPagerNewArrAdapter = new ScreenSlidePagerAdapter(getParentFragmentManager(), newProducts);
+            mPagerNewArrAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), newProducts);
             mPagerNewArivals.setAdapter(mPagerNewArrAdapter);
 
             mPagerFaceMskAdapter = new ScreenSlidePagerAdapter(getChildFragmentManager(), maskProducts);

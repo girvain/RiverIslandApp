@@ -37,7 +37,7 @@
     </style>
 
     <style name="heading">
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_margin">16dp</item>
         <item name="android:textSize">24dp</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -46,15 +46,20 @@
         <item name="android:layout_marginLeft">24dp</item>
         <item name="android:layout_marginRight">24dp</item>
         <item name="android:textSize">16dp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+    <style name="sub_heading_bold">
+        <item name="android:layout_marginLeft">24dp</item>
+        <item name="android:layout_marginRight">24dp</item>
+        <item name="android:textSize">16dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAlignment">textEnd</item>
-
     </style>
 
     <style name="viewpager_home">
         <item name="android:layout_height">388dp</item>
         <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginRight">16dp</item>
         <item name="android:layout_marginBottom">8dp</item>
     </style>

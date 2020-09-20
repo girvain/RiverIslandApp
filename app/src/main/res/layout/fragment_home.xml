@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
@@ -20,19 +21,33 @@
             android:text="@string/new_arrivals"
            />
 
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/sub_heading"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View All" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/sub_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check out the latest fashion" />
+
+            <TextView
+                android:id="@+id/sub_head_home_1"
+                style="@style/sub_heading_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textAlignment="textEnd" />
+        </LinearLayout>
 
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager_new_arrivals_home_fragment"
             style="@style/viewpager_home"
             android:layout_width="match_parent"
-            android:layout_height="493dp">
+            android:layout_height="380dp">
         </androidx.viewpager.widget.ViewPager>
 
         <TextView
@@ -42,18 +57,31 @@
             style="@style/heading"
             android:text="@string/face_mask" />
 
-        <TextView
-            android:id="@+id/masks_subheading_home"
-            style="@style/sub_heading"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View All" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/masks_subheading_home"
+                style="@style/sub_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Are you safe from Covid?" />
+            <TextView
+                android:id="@+id/sub_head_home_2"
+                style="@style/sub_heading_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textAlignment="textEnd" />
+        </LinearLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager_face_mask_home_fragment"
             android:layout_width="match_parent"
             style="@style/viewpager_home"
-            android:layout_height="493dp" >
+            android:layout_height="380dp" >
         </androidx.viewpager.widget.ViewPager>
 
 
@@ -62,20 +90,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/heading"
-            android:text="@string/face_mask" />
+            android:text="Jeans" />
 
-        <TextView
-            android:id="@+id/jeans_subheading_home"
-            style="@style/sub_heading"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View All" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/jeans_subheading_home"
+                style="@style/sub_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Denim is timeless" />
+            <TextView
+                android:id="@+id/sub_head_home_3"
+                style="@style/sub_heading_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textAlignment="textEnd" />
+        </LinearLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager_jeans_home_fragment"
             android:layout_width="match_parent"
             style="@style/viewpager_home"
-            android:layout_height="493dp" >
+            android:layout_height="380dp" >
 
         </androidx.viewpager.widget.ViewPager>
 
