@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,8 @@ public class ProductListFragment extends Fragment {
     private RecyclerView mProductRecyclerView;
     private List<Product> mItems = new ArrayList<>();
 
+    private String productRequest;
+
 //    // TODO: Rename parameter arguments, choose names that match
 //    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 //    private static final String ARG_PARAM1 = "param1";
@@ -62,10 +65,10 @@ public class ProductListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
+        if (getArguments() != null) {
+           productRequest = getArguments().getString("tops");
+           //Log.i(TAG, tops);
+        }
 
         new ProductFetchTask().execute();
     }
@@ -80,6 +83,8 @@ public class ProductListFragment extends Fragment {
         mProductRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         setupAdapter();
+
+
 
         return v;
     }

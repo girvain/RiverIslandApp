@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_singleProductFragment"
             app:destination="@id/singleProductFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
     </fragment>
 
     <fragment
