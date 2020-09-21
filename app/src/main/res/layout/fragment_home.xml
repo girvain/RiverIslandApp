@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
+        <!--   New Arrivals     -->
         <TextView
             android:id="@+id/heading_new_arrivals_home_fragment"
             style="@style/heading"
@@ -43,19 +43,40 @@
                 android:textAlignment="textEnd" />
         </LinearLayout>
 
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/pager_new_arrivals_home_fragment"
-            style="@style/viewpager_home"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="380dp">
-        </androidx.viewpager.widget.ViewPager>
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pager_new_arrivals_home_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="380dp">
+
+            </androidx.viewpager.widget.ViewPager>
+
+            <com.rd.PageIndicatorView
+                android:id="@+id/pageIndicatorView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+                app:piv_animationType="scale"
+                app:piv_dynamicCount="true"
+                app:piv_interactiveAnimation="true"
+                app:piv_selectedColor="@color/secondaryLightColor"
+                app:piv_unselectedColor="@color/primaryDarkColor"
+                app:piv_viewPager="@id/pager_new_arrivals_home_fragment" />
+        </LinearLayout>
+
+        <!--   Face Masks     -->
         <TextView
             android:id="@+id/heading_face_mask_home_fragment"
+            style="@style/heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/heading"
             android:text="@string/face_mask" />
 
         <LinearLayout
@@ -78,14 +99,39 @@
                 android:textAlignment="textEnd" />
         </LinearLayout>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/pager_face_mask_home_fragment"
+        <LinearLayout
             android:layout_width="match_parent"
-            style="@style/viewpager_home"
-            android:layout_height="380dp" >
-        </androidx.viewpager.widget.ViewPager>
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pager_face_mask_home_fragment"
+                android:layout_width="match_parent"
+                style="@style/viewpager_home"
+                android:layout_height="380dp" >
+            </androidx.viewpager.widget.ViewPager>
+
+            <com.rd.PageIndicatorView
+                android:id="@+id/pageIndicatorView2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+                app:piv_animationType="scale"
+                app:piv_dynamicCount="true"
+                app:piv_interactiveAnimation="true"
+                app:piv_selectedColor="@color/secondaryLightColor"
+                app:piv_unselectedColor="@color/primaryDarkColor"
+                app:piv_viewPager="@id/pager_face_mask_home_fragment" />
+        </LinearLayout>
 
 
+
+
+
+        <!--   Jeans     -->
         <TextView
             android:id="@+id/heading_jeans_home_fragment"
             android:layout_width="match_parent"
@@ -113,13 +159,35 @@
                 android:textAlignment="textEnd" />
         </LinearLayout>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/pager_jeans_home_fragment"
+        <LinearLayout
             android:layout_width="match_parent"
-            style="@style/viewpager_home"
-            android:layout_height="380dp" >
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        </androidx.viewpager.widget.ViewPager>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/pager_jeans_home_fragment"
+                android:layout_width="match_parent"
+                style="@style/viewpager_home"
+                android:layout_height="380dp" >
+
+            </androidx.viewpager.widget.ViewPager>
+
+            <com.rd.PageIndicatorView
+                android:id="@+id/pageIndicatorView3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+                app:piv_animationType="scale"
+                app:piv_dynamicCount="true"
+                app:piv_interactiveAnimation="true"
+                app:piv_selectedColor="@color/secondaryLightColor"
+                app:piv_unselectedColor="@color/primaryDarkColor"
+                app:piv_viewPager="@id/pager_jeans_home_fragment" />
+        </LinearLayout>
+
 
     </LinearLayout>
 </ScrollView>
