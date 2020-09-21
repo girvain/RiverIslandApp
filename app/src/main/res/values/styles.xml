@@ -1,11 +1,33 @@
 <resources>
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--    </style>-->
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/secondaryColor</item>
+        <item name="colorPrimaryDark">@color/secondaryDarkColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="fontFamily">@font/open_sans_light</item>
+
+
+        <item name="android:editTextColor">@color/primaryTextColor</item>
+        <item name="android:textColorPrimary">@color/primaryTextColor</item>
+        <item name="android:textColorSecondary">@color/primaryTextColor</item>
+        <item name="android:textColorTertiary">@color/primaryTextColor</item>
+        <item name="android:textColorPrimaryInverse">@color/primaryTextColor</item>
+        <item name="android:textColorSecondaryInverse">@color/primaryTextColor</item>
+        <item name="android:textColorTertiaryInverse">@color/primaryTextColor</item>
+
+    </style>
+
+    <style name="ActionBar.Solid.MyAppTheme" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -59,7 +81,14 @@
 
     <style name="heading">
         <item name="android:layout_margin">16dp</item>
-        <item name="android:textSize">24dp</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="heading_nav">
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="android:textSize">20dp</item>
+<!--        <item name="fontFamily">@font/mukta_vaani_medium</item>-->
         <item name="android:textStyle">bold</item>
     </style>
 

@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="me.gavin.riverislandapp.HomeFragment"
-        android:label="River Island"
+        android:label="RIVER ISLAND"
         tools:layout="@layout/fragment_home" >
 
         <action
