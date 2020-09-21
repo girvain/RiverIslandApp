@@ -1,8 +1,11 @@
 package me.gavin.riverislandapp;
 
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,9 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +69,7 @@ public abstract class AbstractProductListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         new ProductFetchTask().execute();
+
     }
 
     @Override
@@ -70,6 +80,8 @@ public abstract class AbstractProductListFragment extends Fragment {
 
         mProductRecyclerView = v.findViewById(R.id.product_recycler_view);
         mProductRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
+
 
         setupAdapter();
 
@@ -83,12 +95,12 @@ public abstract class AbstractProductListFragment extends Fragment {
     }
 
 
-
     private class ProductHolder extends RecyclerView.ViewHolder {
         private TextView mProductTrendOrNew;
         private TextView mProductName;
         private ImageView mProdImgMain;
         private TextView mProductCost;
+        private ProgressBar mProgressBar;
 
         public ProductHolder(View itemView) {
             super(itemView);
@@ -96,6 +108,7 @@ public abstract class AbstractProductListFragment extends Fragment {
             mProductName = itemView.findViewById(R.id.product_name_textview);
             mProductCost = itemView.findViewById(R.id.product_cost_textview);
             mProdImgMain = itemView.findViewById(R.id.product_img_main);
+            mProgressBar = itemView.findViewById(R.id.progressBarList);
         }
     }
 
@@ -125,8 +138,22 @@ public abstract class AbstractProductListFragment extends Fragment {
             productHolder.mProductName.setText(product.getName());
             productHolder.mProductCost.setText("£" + product.getCost());
 
+
             Glide.with(getContext())
                     .load(product.getAllImages().get(0))
+                    .skipMemoryCache(true)
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            productHolder.mProgressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+                    })
                     //.centerCrop()
                     .into(productHolder.mProdImgMain);
 
