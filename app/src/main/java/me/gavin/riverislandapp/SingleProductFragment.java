@@ -39,6 +39,8 @@ public class SingleProductFragment extends Fragment {
     private TextView mTrendOrNewTextView;
     private TextView mNameTextView;
     private TextView mPriceTextView;
+    private TextView mSizesTextView;
+    private TextView mColoursTextView;
 
     public SingleProductFragment() {
         // Required empty public constructor
@@ -93,7 +95,13 @@ public class SingleProductFragment extends Fragment {
         mNameTextView.setText(product.getName());
 
         mPriceTextView = view.findViewById(R.id.single_prod_price_textview);
-        mPriceTextView.setText(product.getCost());
+        mPriceTextView.setText("£" + product.getCost());
+
+        mSizesTextView = view.findViewById(R.id.sizes_content);
+        mSizesTextView.setText(product.getSizes());
+
+        mColoursTextView = view.findViewById(R.id.colours_content);
+        mColoursTextView.setText(product.getColour());
 
     }
 

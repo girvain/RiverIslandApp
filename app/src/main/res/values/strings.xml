@@ -18,4 +18,6 @@
     <string name="all_products">All Products</string>
     <string name="new_arrivals">New Arivals</string>
     <string name="face_mask">Face Mask</string>
+    <string name="sizes_header">Sizes:</string>
+    <string name="colours_heading">Colours:</string>
 </resources>
