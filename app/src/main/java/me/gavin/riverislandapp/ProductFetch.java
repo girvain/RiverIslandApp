@@ -66,6 +66,16 @@ public class ProductFetch {
                 .filter(product -> isWordInList(product.getCategory(), category))
                 .collect(Collectors.toList());
     }
+    public List<Product> fetchAndFilterByName(String name) {
+        return fetchItems().stream()
+                .filter(product -> {
+                    String word = name;
+                    String cap = word.substring(0, 1).toUpperCase() + word.substring(1);
+                    return product.getName().contains(name) ||
+                            product.getName().contains(cap);
+                })
+                .collect(Collectors.toList());
+    }
 
     public List<Product> filterByCategory(List<Product> products, String category) {
         return products.stream()

@@ -119,6 +119,15 @@
             android:id="@+id/action_accessoriesFragment_to_singleProductFragment"
             app:destination="@id/singleProductFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="me.gavin.riverislandapp.SearchResultFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search_result" >
+        <action
+            android:id="@+id/action_searchResultFragment_to_singleProductFragment"
+            app:destination="@id/singleProductFragment" />
+    </fragment>
 
 
 </navigation>
