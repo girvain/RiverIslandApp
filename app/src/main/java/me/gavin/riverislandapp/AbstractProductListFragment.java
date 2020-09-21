@@ -36,6 +36,8 @@ public abstract class AbstractProductListFragment extends Fragment {
     private static final String TAG = "ProductListFragment";
     private RecyclerView mProductRecyclerView;
     private List<Product> mItems = new ArrayList<>();
+    private ProgressBar mProgressBar;
+    private TextView mNotFound;
 
 
     /**
@@ -68,7 +70,7 @@ public abstract class AbstractProductListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new ProductFetchTask().execute();
+//        new ProductFetchTask().execute();
 
     }
 
@@ -81,7 +83,10 @@ public abstract class AbstractProductListFragment extends Fragment {
         mProductRecyclerView = v.findViewById(R.id.product_recycler_view);
         mProductRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
+        mProgressBar = v.findViewById(R.id.progressBarRecycler);
+        mNotFound = v.findViewById(R.id.not_found);
 
+        new ProductFetchTask().execute();
 
         setupAdapter();
 
@@ -159,8 +164,6 @@ public abstract class AbstractProductListFragment extends Fragment {
 
             //TODO : this might not go here
             productHolder.mProdImgMain.setOnClickListener(v -> {
-//                NavDirections action = ProductListFragmentDirections.actionProductListFragmentToSingleProductFragment(product);
-//                Navigation.findNavController(v).navigate(action);
                 navigationImp(v, product);
             });
         }
@@ -173,8 +176,13 @@ public abstract class AbstractProductListFragment extends Fragment {
 
     private class ProductFetchTask extends AsyncTask<Void, Void, List<Product>> {
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
         protected List<Product> doInBackground(Void... voids) {
-            //return new ProductFetch().fetchItems();
             return getProducts();
         }
 
@@ -182,6 +190,13 @@ public abstract class AbstractProductListFragment extends Fragment {
         protected void onPostExecute(List<Product> items) {
             mItems = items;
             setupAdapter();
+            mProgressBar.setVisibility(View.INVISIBLE);
+
+            if (items.size() == 0) {
+                mNotFound.setVisibility(View.VISIBLE);
+            }
         }
+
+
     }
 }
