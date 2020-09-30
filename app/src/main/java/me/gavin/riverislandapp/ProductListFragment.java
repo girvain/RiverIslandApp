@@ -39,14 +39,6 @@ public class ProductListFragment extends Fragment {
 
     private String productRequest;
 
-//    // TODO: Rename parameter arguments, choose names that match
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//
-//    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
 
     public ProductListFragment() {
         // Required empty public constructor
@@ -67,7 +59,7 @@ public class ProductListFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
            productRequest = getArguments().getString("tops");
-           //Log.i(TAG, tops);
+           Log.i(TAG, "");
         }
 
         new ProductFetchTask().execute();
@@ -156,7 +148,12 @@ public class ProductListFragment extends Fragment {
     private class ProductFetchTask extends AsyncTask<Void, Void, List<Product>> {
         @Override
         protected List<Product> doInBackground(Void... voids) {
-            return new ProductFetch().fetchItems();
+
+            if (productRequest.equals("tops")) {
+                return new ProductFetch().fetchAndFilterByCategory("Tops");
+            } else {
+                return new ProductFetch().fetchItems();
+            }
         }
 
         @Override

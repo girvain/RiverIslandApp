@@ -77,18 +77,24 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 else if (item.getTitle().equals("Tops")) {
-                    if (navController.getCurrentDestination().getId() != R.id.productListFragment) {
-                        NavDirections action = HomeFragmentDirections.actionHomeFragmentToProductListFragment();
-                        navController.navigate(action);
-                        navigationView.setCheckedItem(item);
-                        drawer.close();
-                    } else {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("tops", "tops");
-                        navController.navigate(R.id.productListFragment, bundle);
-                        navigationView.setCheckedItem(item);
-                        drawer.close();
-                    }
+                    Bundle bundle = new Bundle();
+                    bundle.putString("tops", "tops");
+                    navController.navigate(R.id.productListFragment, bundle);
+                    navigationView.setCheckedItem(item);
+                    drawer.close();
+
+//                    if (navController.getCurrentDestination().getId() != R.id.productListFragment) {
+//                        NavDirections action = HomeFragmentDirections.actionHomeFragmentToProductListFragment();
+//                        navController.navigate(action);
+//                        navigationView.setCheckedItem(item);
+//                        drawer.close();
+//                    } else {
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("tops", "tops");
+//                        navController.navigate(R.id.productListFragment, bundle);
+//                        navigationView.setCheckedItem(item);
+//                        drawer.close();
+//                    }
                 }
                 return false;
             }
