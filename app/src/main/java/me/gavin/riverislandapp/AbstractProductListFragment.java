@@ -38,6 +38,7 @@ public abstract class AbstractProductListFragment extends Fragment {
     private List<Product> mItems = new ArrayList<>();
     private ProgressBar mProgressBar;
     private TextView mNotFound;
+    private int currentPos;
 
 
     /**
@@ -90,7 +91,22 @@ public abstract class AbstractProductListFragment extends Fragment {
 
         setupAdapter();
 
+
+
         return v;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //outState.putInt(mProductRecyclerView.getVerticalScrollbarPosition());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mProductRecyclerView.scrollToPosition(currentPos); // not working!!!!!!!
+        mProductRecyclerView.smoothScrollToPosition(10);
     }
 
     private void setupAdapter() {
@@ -164,8 +180,11 @@ public abstract class AbstractProductListFragment extends Fragment {
 
             //TODO : this might not go here
             productHolder.mProdImgMain.setOnClickListener(v -> {
+                // ---------------------------------- Fix -------------------------------------- //
+                currentPos = productHolder.getAdapterPosition(); // set the current position before leaving
                 navigationImp(v, product);
             });
+
         }
 
         @Override

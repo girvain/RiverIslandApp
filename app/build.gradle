@@ -55,5 +55,8 @@ dependencies {
     // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
+    // this was missing on repo
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+
+
 }
